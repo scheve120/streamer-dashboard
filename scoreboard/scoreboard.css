@@ -1,0 +1,48 @@
+/*
+This is the scoreboard CSS file
+*/
+
+body{
+  background-color: transparent;
+}
+div.playerKill{
+  background: blue;
+  border-style: dotted;
+  border-radius: 2px;
+  border-color: red;
+}
+
+div.kill-sloop{
+  background: pink;
+  border-style: dotted;
+  border-radius: 2px;
+  border-color: red;
+}
+
+div.kill-brigatine{
+  background: blue;
+  border-style: dotted;
+  border-radius: 2px;
+  border-color: red;
+}
+
+div.kill-gallion{
+  background: pink;
+  border-style: dotted;
+  border-radius: 2px;
+  border-color: red;
+}
+
+tr.warning{
+  color: red;
+  background-color: yellow;
+}
+
+tr {
+  background-color: red;
+}
+
+td {
+  background-color: blue|50%;
+  background-color: transparent 50%;
+}
