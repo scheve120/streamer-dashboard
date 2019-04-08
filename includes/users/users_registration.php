@@ -32,7 +32,6 @@ function users_init_registration_process() {
   // Check if everything is correct
   $users_registration_check_result = (object) users_registration_check($user_data);
   if ($users_registration_check_result->succes) {
-    // echo "registration failt";
     require './includes/email/PHP-Mail-handler.php';
     registration_confirmation_mail($user_data);
     users_register_to_database($user_data);
@@ -85,16 +84,6 @@ function users_is_all_user_input_tainted ($username, $pass1, $pass2) {
     );
   }
 
-
-
-
-  // varstocheckfortags = (username, pass1, pass2)
-  // foreach (varstocheckfortags as value) {
-    // remove tags
-    // if (... != ...) {
-      // returnarray
-    //}
-  //}
   $values_to_check_for_tags = array($username, $pass1);
   foreach ($values_to_check_for_tags as $value_to_check_for_tags) {
     if (strip_tags($value_to_check_for_tags) != $value_to_check_for_tags) {
@@ -189,7 +178,6 @@ function users_email_is_free($email) {
 function users_password_check ($password1, $password2) {
   $password_tags = strip_tags($password1);
   if (empty($password1) || empty($password2)) {
-    // echo "Please enter a password </br>";
     // return FALSE;
     return array(
       'success' => FALSE,

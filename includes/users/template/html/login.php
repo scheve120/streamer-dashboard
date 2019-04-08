@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="./includes/users/template/user.css" type="text/css">
+<link rel="stylesheet" href="./includes/users/template/css/user.css" type="text/css">
 
 <?php if (empty($_SESSION["user_online"])): ?>
 
@@ -45,4 +45,4 @@
   var form_key = '<?php echo $form_key; ?>';
 </script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="./includes/users/template/user.js"></script>
+<script type="text/javascript" src="./includes/users/template/js/user.js"></script>

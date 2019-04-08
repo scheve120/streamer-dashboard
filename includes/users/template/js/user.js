@@ -17,7 +17,6 @@ jQuery(function($) {
   // Bind click event to all buttons in NAV element in DIV.account-forms.
   $buttons.click(function(e) {
     var btnClass = $(this).attr('class').split(" ")[0]; // Setting button class
-    // var sectionSelector = 'section.' + btnClass; // Add a button class
 
     $buttons.removeClass('active');
     $(this).addClass('active');
@@ -25,11 +24,7 @@ jQuery(function($) {
     $accountForms.find('section').removeClass('active');
     $accountForms.find('section').filter('.' + btnClass).addClass('active');
 
-    // $accountForms.find('submit').removeClass('active');
-    // $accountForms.find('submit').filter('.' + btnClass).addClass('active');
   });
-
-  // var $errors = $('.errors');
 
   if (typeof(form_key) === 'undefined' || form_key === '') {
     // Trigger click event on first button in NAV element.

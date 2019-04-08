@@ -27,16 +27,14 @@ function users_login_naam_en_password () {
     // Sending back to previous URL
     $url = $_SERVER['HTTP_REFERER'];
     $_SESSION["UserStatus"] = "Your logged in";
-    // echo '<meta http-equiv="refresh" content="2;URL='.$url.'">';
-// php redirect
+    // php redirect
     return (TRUE);
   }
   // Returns false is there is no password or name matching
   $_SESSION["user_online"] = FALSE;
   $_SESSION["Sessiontest"] = "Please login";
   echo "Can't login, Check username or password";
-  // echo '<meta http-equiv="refresh" content="2;URL='.$url.'">';
-// php redirect
+  // php redirect
   return (FALSE);
 }
 
