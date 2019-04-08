@@ -21,7 +21,7 @@ if (empty($_SESSION["user_online"])) {
   $page_content = load_template("./includes/users/template/login.php", $page_variables);
 
 } else {
-
+  
 // ob start
 
   $page_content = load_template("./scoreboard/editboard.php", $page_variables);
