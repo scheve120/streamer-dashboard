@@ -21,7 +21,7 @@ if (empty($_SESSION["user_online"])) {
   $page_content = load_template("./includes/users/template/login.php", $page_variables);
 
 } else {
-  
+
 // ob start
 
   $page_content = load_template("./scoreboard/editboard.php", $page_variables);
@@ -29,6 +29,7 @@ if (empty($_SESSION["user_online"])) {
 
 require "./themes/templates/html.php";
 
+echo "commit";
 
 // volgende file WEL laden wanneer je bent ingelogd
 // $page_content = 456;
