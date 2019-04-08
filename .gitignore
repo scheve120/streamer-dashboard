@@ -2,5 +2,4 @@
 conf.local.php
 local.php
 .ftpconfig
-.gitignore
 .ftpignore
