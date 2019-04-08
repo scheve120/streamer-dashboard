@@ -10,11 +10,12 @@ if ($form_key === "register") {
 }
 
 if (isset($_POST["reset-password"])) {
-
   users_send_recovery_email();
 }
 
 function users_init_registration_process() {
+  global $site_title;
+  global $site_title_url;
 
   $username = $_POST["user_name"];
   $email = $_POST["email1"];
@@ -26,19 +27,19 @@ function users_init_registration_process() {
     'email2' => $_POST["email2"],
     'password1' => $_POST["password1"],
     'password2' => $_POST["password2"],
-    'hash_pass' => $hash_password
+    'hash_pass' => $hash_password,
+    'confirmation_email' => 'Welcom '. strip_tags($_POST["user_name"]) .' to <a href="'.$site_title_url.'">'. $site_title . '"</a>"'
   );
 
   // Check if everything is correct
   $users_registration_check_result = (object) users_registration_check($user_data);
   if ($users_registration_check_result->succes) {
     require './includes/email/PHP-Mail-handler.php';
-    registration_confirmation_mail($user_data);
+    email_sender($user_data);
     users_register_to_database($user_data);
     return array(
       'succes' => TRUE,
-      'message' => 'Registration succesful!',
-      'sendconfirm' => 'Here needs to be a configuratble variable'
+      'message' => 'Registration succesful!'
     );
   } else {
     return $users_registration_check_result;

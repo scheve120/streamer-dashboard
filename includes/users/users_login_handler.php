@@ -13,7 +13,8 @@ if (isset($_POST["login-button"])) {
 
 function users_login_naam_en_password () {
   global $pdo;
-
+  global $site_title_url;
+  
   $Username = $_POST["user_name"];
   $UserPassword = $_POST["password"];
 
@@ -41,8 +42,4 @@ function users_login_naam_en_password () {
 
 function users_username_alert ($user_regestration_name) {
   global $pdo;
-}
-
-function users_reset_password () {
-
 }
