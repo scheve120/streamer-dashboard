@@ -1,0 +1,6 @@
+# Ignore local configuration
+conf.local.php
+local.php
+.ftpconfig
+.gitignore
+.ftpignore

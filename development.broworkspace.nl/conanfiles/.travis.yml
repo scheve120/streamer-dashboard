@@ -1,0 +1,14 @@
+sudo: false
+language: php
+php:
+  - 7.2
+
+notifications:
+  email: false
+
+install:
+  - composer install --dev --no-interaction
+script:
+  - ./vendor/bin/phpunit --configuration Tests/phpunit.xml
+after_script:
+  - ./.codeclimate.sh

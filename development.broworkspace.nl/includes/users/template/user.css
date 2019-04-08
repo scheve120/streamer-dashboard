@@ -1,0 +1,23 @@
+body {
+}
+
+.account-forms section {
+  display: none;
+}
+.account-forms section.active {
+  display: block;
+}
+nav button {
+  background-color: #C3B7B7;
+}
+.account-forms {
+  border-style: groove;
+  width: 500px;
+  margin: auto;
+  background-color: powderblue;
+  color: grey;
+}
+
+button.active {
+  background-color: #89A5DE;
+}
