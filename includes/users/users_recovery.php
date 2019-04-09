@@ -1,12 +1,23 @@
 <?php
 
 function users_reset_password ($data) {
-  echo "if final function to send email works";
-  // $init_password_recovery_result = (object) init_password_recovery($data);
+  global $pdo;
 
-  if ($init_password_recovery_result->succes) {
-    require './includes/email/PHP-Mail-handler.php';
-    email_sender($init_password_recovery_result->recover_email);
+  $users_email = "SELECT user_name, user_email FROM user WHERE user_email=?";
+  $query = $pdo->prepare($users_email);
+  $query->execute([$data['email']]);
+  $result = $query->fetch(PDO::FETCH_ASSOC);
+
+  echo "<br/> Test 2 Users reset password";
+
+  if ($result) {
+    return array(
+      'succes' => TRUE,
+      'recover_email' => $result,
+      'username' => $result["user_name"],
+      'email_to' => $result["user_email"],
+      'email_text' => 'Password recovery email has been send!'
+    );
   }
 
 }
@@ -14,21 +25,18 @@ function users_reset_password ($data) {
 function init_password_recovery($data) {
   // echo "function is under development";
   // return;
-  global $pdo;
-
-  $users_email = "SELECT user_email FROM user WHERE user_email=?";
-  $query = $pdo->prepare($users_email);
-  $query->execute([$data['email']]);
-  $result = $query->fetch(PDO::FETCH_ASSOC);
-
-  if ($result) {
-    echo "test if recovery works part 2";
-    users_reset_password ($data);
-    return array(
-      'succes' => TRUE,
-      'recover_email' => $result,
-      'message' => 'Password recovery email has been send!'
+  $users_reset_password_result = (object) users_reset_password ($data);
+  echo "<br/> test 1 init password recovery function";
+  if ($users_reset_password_result->succes) {
+    require './includes/email/PHP-Mail-handler.php';
+    $recovery_email = array(
+      'recover_email' => $users_reset_password_result->recover_email,
+      'username' => $users_reset_password_result->username,
+      'email_to' => $users_reset_password_result->email_to,
+      'email_text' => $users_reset_password_result->email_text
     );
+    email_sender($recovery_email);
   }
+
 
 }

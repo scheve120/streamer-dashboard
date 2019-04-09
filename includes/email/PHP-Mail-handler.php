@@ -12,11 +12,11 @@ function send_email ($user_mailing) {
 function email_sender ($data) {
   global $site_title;
 
-  print_r($data['email']);
+  // print_r($data['email']);
 
   $name = $data['username'];
   $username = htmlspecialchars($name);
-  $to = $data['email1'];
+  $to = $data['email_to'];
   $subject = "Test of email werkt";
   $from = "info@".$site_title;
 
@@ -24,11 +24,14 @@ function email_sender ($data) {
   $headers  = 'MIME-Version: 1.0' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
   $headers .= "From: $from test location from the headers";
-  $text = $data["confirmation_email"];
+  $text = $data["email_text"];
 
   $text = wordwrap($text,70);
+
+  // print_r($data);
+
   // send_email($send_user_data);
-    // mail($to, $subject, $text, $headers);
+    mail($to, $subject, $text, $headers);
 
 }
 

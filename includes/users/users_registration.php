@@ -33,7 +33,8 @@ function users_init_registration_process() {
     'password1' => $_POST["password1"],
     'password2' => $_POST["password2"],
     'hash_pass' => $hash_password,
-    'confirmation_email' => 'Welcom '. strip_tags($_POST["user_name"]) .' to <a href="'.$site_title_url.'">'. $site_title . '"</a>"'
+    'email_to' => $_POST["email1"],
+    'email_text' => 'Welcom '. strip_tags($_POST["user_name"]) .' to <a href="'.$site_title_url.'">'. $site_title . '"</a>"'
   );
 
   // Check if everything is correct
@@ -48,7 +49,6 @@ function users_init_registration_process() {
     );
   } else {
     return $users_registration_check_result;
-    var_dump($users_registration_check_result->succes);
   }
 
   // Sends registration data to database
