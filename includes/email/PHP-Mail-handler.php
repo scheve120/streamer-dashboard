@@ -12,12 +12,14 @@ function send_email ($user_mailing) {
 function email_sender ($data) {
   global $site_title;
 
+  print_r($data['email']);
+
   $name = $data['username'];
   $username = htmlspecialchars($name);
   $to = $data['email1'];
   $subject = "Test of email werkt";
   $from = "info@".$site_title;
-  
+
   // Send content with html
   $headers  = 'MIME-Version: 1.0' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -26,7 +28,8 @@ function email_sender ($data) {
 
   $text = wordwrap($text,70);
   // send_email($send_user_data);
-    mail($to, $subject, $text, $headers);
+    // mail($to, $subject, $text, $headers);
+
 }
 
 

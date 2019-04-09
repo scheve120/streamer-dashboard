@@ -9,8 +9,13 @@ if ($form_key === "register") {
   }
 }
 
-if (isset($_POST["reset-password"])) {
-  users_send_recovery_email();
+if (isset($_POST['reset-password'])) {
+  require "./includes/users/users_recovery.php";
+  $user_data = array(
+    'username' => $_POST["user_name"],
+    'email' => $_POST["email"]
+  );
+  init_password_recovery($user_data);
 }
 
 function users_init_registration_process() {
