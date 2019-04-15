@@ -1,7 +1,7 @@
-
+<!-- html5 Login abd and regitration form. -->
 <link rel="stylesheet" href="./includes/users/template/css/user.css" type="text/css">
 
-<?php if (empty($_SESSION["user_online"])): ?>
+<?php if (empty($_SESSION["user_online"])) : ?>
 
   <div class="account-forms">
     <nav>
@@ -37,7 +37,7 @@
       </form>
     </section>
   </div>
-<?php else: ?>
+<?php else : ?>
 
 <?php endif; ?>
 

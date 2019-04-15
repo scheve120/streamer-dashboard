@@ -51,6 +51,6 @@ else {
     'name' => '',
     'email1' => '',
     'email2' => '',
-    'password1' => ''
+    'password1' => '',
   );
 }

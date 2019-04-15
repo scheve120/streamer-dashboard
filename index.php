@@ -15,7 +15,6 @@ require './includes/users/users_variables.php';
 require "./includes/users/users_login_handler.php";
 
 
-
 // volgende files laden wanneer je niet bent ingelogd
 if (empty($_SESSION["user_online"])) {
   include "./includes/users/users_registration.php";

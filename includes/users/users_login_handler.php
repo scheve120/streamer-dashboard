@@ -1,34 +1,38 @@
 <?php
-// If the user have prest the logout button
+
+/** #Login
+ * @file: Login form script.
+ */
+
+// If the user have prest the logout button.
 if (isset($_POST["logout"])) {
   $_SESSION["user_online"] = FALSE;
 }
 
-// if form is set start the loging function
+// If form is set start the loging function.
 if (isset($_POST["login-button"])) {
-  users_login_naam_en_password ();
+  users_login_naam_en_password();
 }
 
 // Login function
-
-function users_login_naam_en_password () {
+function users_login_naam_en_password() {
   global $pdo;
   global $site_title_url;
-  
-  $Username = $_POST["user_name"];
-  $UserPassword = $_POST["password"];
+
+  $username = $_POST["user_name"];
+  $userPassword = $_POST["password"];
 
   $select_user = "SELECT * FROM user WHERE user_name = ?";
   $user_data_prepare = $pdo->prepare($select_user);
-  $user_data_prepare->execute([$Username]);
+  $user_data_prepare->execute([$username]);
   $users = $user_data_prepare->fetch();
 
-  if ($users &&  password_verify($UserPassword, $users['user_password'])){
+  if ($users &&  password_verify($userPassword, $users['user_password'])){
     $_SESSION["user_online"] = TRUE;
-    // Sending back to previous URL
+    // Sending back to previous URL.
     $url = $_SERVER['HTTP_REFERER'];
     $_SESSION["UserStatus"] = "Your logged in";
-    // php redirect
+    // Php redirect.
     return (TRUE);
   }
   // Returns false is there is no password or name matching
