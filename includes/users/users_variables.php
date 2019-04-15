@@ -10,8 +10,8 @@ if (isset($_POST["REGemail1"]) && isset($_POST["REGemail2"])) {
 
 
 // form field namen aanpassen naar username, password, etc.
-$user_login_name = $_POST["user_name"];
-$user_login_password = $_POST["password"];
+// $user_login_name = $_POST["username"];
+// $user_login_password = $_POST["password"];
 
 
 
@@ -47,10 +47,10 @@ elseif (isset($_POST["register-button"])) {
 else {
   $form_key = FALSE;
   $page_variables = array(
-    'form_key' => $form_key,
-    'name' => $name,
-    'email1' => $email1,
-    'email2' => $email2,
-    'password1' => $password1
+    'form_key' => '',
+    'name' => '',
+    'email1' => '',
+    'email2' => '',
+    'password1' => ''
   );
 }

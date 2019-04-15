@@ -10,15 +10,16 @@ function send_email ($user_mailing) {
 }
 
 function email_sender ($data) {
-  global $site_title;
+  global $site_domain;
 
   // print_r($data['email']);
 
   $name = $data['username'];
   $username = htmlspecialchars($name);
   $to = $data['email_to'];
-  $subject = "Test of email werkt";
-  $from = "info@".$site_title;
+  $subject = $data['email_subject'];
+  $from = $data['from'].$site_domain;
+
 
   // Send content with html
   $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -28,14 +29,6 @@ function email_sender ($data) {
 
   $text = wordwrap($text,70);
 
-  // print_r($data);
-
-  // send_email($send_user_data);
-    mail($to, $subject, $text, $headers);
-
-}
-
-
-function password_recovery () {
+  mail($to, $subject, $text, $headers);
 
 }

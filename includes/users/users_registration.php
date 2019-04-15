@@ -15,12 +15,12 @@ if (isset($_POST['reset-password'])) {
     'username' => $_POST["user_name"],
     'email' => $_POST["email"]
   );
-  init_password_recovery($user_data);
+  users_init_password_recovery($_POST["email"]);
 }
 
 function users_init_registration_process() {
-  global $site_title;
-  global $site_title_url;
+  global $site_url;
+  global $site_domain;
 
   $username = $_POST["user_name"];
   $email = $_POST["email1"];
@@ -33,8 +33,10 @@ function users_init_registration_process() {
     'password1' => $_POST["password1"],
     'password2' => $_POST["password2"],
     'hash_pass' => $hash_password,
+    'from' => 'no-reply@',
+    'email_subject' => 'Registration succesful',
     'email_to' => $_POST["email1"],
-    'email_text' => 'Welcom '. strip_tags($_POST["user_name"]) .' to <a href="'.$site_title_url.'">'. $site_title . '"</a>"'
+    'email_text' => 'Welcom '. strip_tags($_POST["user_name"]) .' to <a href="'.$site_url.'">'. $site_domain . '"</a>"'
   );
 
   // Check if everything is correct

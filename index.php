@@ -1,5 +1,9 @@
 <?php
 
+// Print all warnings.
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 ini_set('session.gc_maxlifetime', 300);
 session_set_cookie_params(300);
 session_start();
@@ -9,6 +13,8 @@ require_once "./sql/mysql.php";
 
 require './includes/users/users_variables.php';
 require "./includes/users/users_login_handler.php";
+
+
 
 // volgende files laden wanneer je niet bent ingelogd
 if (empty($_SESSION["user_online"])) {
@@ -21,7 +27,11 @@ if (empty($_SESSION["user_online"])) {
 }
 
 require "./themes/templates/html.php";
+$time = date_default_timezone_set('Europe/Amsterdam');
+echo date(DATE_RFC2822);
 
+echo "<br/>";
+// echo random_bytes(32);
 // volgende file WEL laden wanneer je bent ingelogd
 
 function load_template($template_path, $variables = array()) {
