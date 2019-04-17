@@ -1,9 +1,19 @@
 <!-- html5 Login abd and regitration form. -->
 <link rel="stylesheet" href="./includes/users/template/css/user.css" type="text/css">
+  <div class="account-forms">
+<?php if (isset($_GET['password-reset'])) : ?>
+
+  <form action="index.php" method="get" name="account-recover">
+    <p>Password: <input type="password" placeholder="password" name="password1" value="<?php print htmlentities($password1); ?>"></p>
+    <p>Confirmation password: <input type="password" placeholder="nogmaals password voor controle"  name="password2"></p>
+    <input type="submit" name="account-recover" value="Reset password">
+  </form>
+
+<?php else : ?>
 
 <?php if (empty($_SESSION["user_online"])) : ?>
 
-  <div class="account-forms">
+
     <nav>
       <button class="login">Login</button>
       <button class="register">Register</button>
@@ -46,3 +56,4 @@
 </script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="./includes/users/template/js/user.js"></script>
+<?php endif; ?>

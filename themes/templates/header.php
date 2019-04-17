@@ -1,5 +1,4 @@
-
-<?php if (!empty($_SESSION["user_online"])): ?>
+<?php if (!empty($_SESSION["user_online"])) : ?>
   <div id="logout" class="tablecontent">
     <form action="" method="post" name="logout">
       <input type="submit" name="logout" value="logout">
@@ -13,8 +12,8 @@
     Also for testing some options how to build up a template function</h1>
 </div>
 
-<?php if (!empty($page_message)): ?>
+<?php if (!empty($page_message)) : ?>
   <div class="errors">
     <?php echo $page_message; ?>
   </div>
-<?php endif; ?>
+<?php endif;

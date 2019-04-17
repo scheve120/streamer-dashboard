@@ -6,14 +6,6 @@ if (isset($_POST["REGemail1"]) && isset($_POST["REGemail2"])) {
   email_check($_POST["REGemail1"],$email1,$_POST["REGemail2"]);
 }
 
-// User login variables from the input form
-
-
-// form field namen aanpassen naar username, password, etc.
-// $user_login_name = $_POST["username"];
-// $user_login_password = $_POST["password"];
-
-
 
 if (isset($_POST["login-button"])) {
   $form_key = 'login';
@@ -35,7 +27,7 @@ elseif (isset($_POST["register-button"])) {
   $name =  $_POST["user_name"];
   $email1 = $_POST["email1"];
   $email2 = $_POST["email2"];
-  $password =  $_POST["password1"];
+  $password1 =  $_POST["password1"];
   $page_variables = array(
     'form_key' => $form_key,
     'name' => $name,

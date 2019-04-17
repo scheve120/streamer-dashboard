@@ -84,15 +84,3 @@ function users_generate_recovery_token($select_user_email) {
     echo "recovery function failt 3";
   }
 }
-
-/**
- * Creating password recovery form.
- */
-function password_recovery_form() {
-  ?>
-  <form action="" method="post" name="reset_password">
-    <p>Password: <input type="password" placeholder="password" name="password1" value="<?php print htmlentities($password1); ?>"></p>
-    <p>Confirmation password: <input type="password" placeholder="nogmaals password voor controle"  name="password2"></p>
-  </form>
-  <?php
-}

@@ -1,7 +1,8 @@
 <?php
 
-/** #Login
- * @file: Login form script.
+/**
+ * @file
+ * Login form script.
  */
 
 // If the user have prest the logout button.
@@ -27,7 +28,7 @@ function users_login_naam_en_password() {
   $user_data_prepare->execute([$username]);
   $users = $user_data_prepare->fetch();
 
-  if ($users &&  password_verify($userPassword, $users['user_password'])){
+  if ($users &&  password_verify($userPassword, $users['user_password'])) {
     $_SESSION["user_online"] = TRUE;
     // Sending back to previous URL.
     $url = $_SERVER['HTTP_REFERER'];
@@ -35,14 +36,12 @@ function users_login_naam_en_password() {
     // Php redirect.
     return (TRUE);
   }
-  // Returns false is there is no password or name matching
+  // Returns false is there is no password or name matching.
   $_SESSION["user_online"] = FALSE;
   $_SESSION["Sessiontest"] = "Please login";
-  echo "Can't login, Check username or password";
-  // php redirect
+  // Php redirect.
   return (FALSE);
 }
-
 
 function users_username_alert ($user_regestration_name) {
   global $pdo;

@@ -2,19 +2,13 @@
 
 /**
  * @file
- * This file whil load al need files for user registrations.
+ * This whil load the user login registration and logout functions.
+ *
+ * This streaming dashboard is created by Scheve120 / David van den Berg.
+ * There are no rights to re use this code without given permissions.
+ * For more information check  @link http://scheve120.nl.
  */
 
-require_once './conf/conf.php';
-require_once './sql/mysql.php';
-
-// Volgende files laden wanneer je niet bent ingelogd.
-if (empty($_SESSION["user_online"])) {
-  include "./includes/users/users_registration.php";
-  $page_content = load_template("./includes/users/template/html/login.php", $page_variables);
-
-}
-else {
-  // Laad deze bestanden wanneer je wel ben ingelogd.
-  $page_content = load_template("./scoreboard/editboard.php", $page_variables);
-}
+require_once 'users_variables.php';
+require_once 'users_login_handler.php';
+require_once 'users_registration.php';

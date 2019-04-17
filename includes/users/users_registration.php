@@ -4,13 +4,13 @@
 if ($form_key === "register") {
   $users_init_registration_process_result = (object) users_init_registration_process();
 
-  if (!$users_init_registration_process_result->success)  {
+  if (!$users_init_registration_process_result->succes)  {
     $page_message = $users_init_registration_process_result->message;
   }
 }
 
 if (isset($_POST['reset-password'])) {
-  require "./includes/users/users_recovery.php";
+  require_once "./includes/users/users_recovery.php";
   $user_data = array(
     'username' => $_POST["user_name"],
     'email' => $_POST["email"]
@@ -42,7 +42,7 @@ function users_init_registration_process() {
   // Check if everything is correct
   $users_registration_check_result = (object) users_registration_check($user_data);
   if ($users_registration_check_result->succes) {
-    require './includes/email/PHP-Mail-handler.php';
+    require_once './includes/email/PHP-Mail-handler.php';
     email_sender($user_data);
     users_register_to_database($user_data);
     return array(
@@ -52,9 +52,6 @@ function users_init_registration_process() {
   } else {
     return $users_registration_check_result;
   }
-
-  // Sends registration data to database
-
 }
 
 /**
