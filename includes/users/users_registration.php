@@ -9,12 +9,9 @@ if ($form_key === "register") {
   }
 }
 
-if (isset($_POST['reset-password'])) {
+if (isset($_POST['send-token'])) {
   require_once "./includes/users/users_recovery.php";
-  $user_data = array(
-    'username' => $_POST["user_name"],
-    'email' => $_POST["email"]
-  );
+
   users_init_password_recovery($_POST["email"]);
 }
 
@@ -82,7 +79,7 @@ function users_is_all_user_input_tainted ($username, $pass1, $pass2) {
   }
 
   $users_password_check_result = (object) users_password_check($pass1, $pass2);
-  if (!$users_password_check_result->success) {
+  if (!$users_password_check_result->succes) {
     return array(
       'succes' => FALSE,
       'message' => 'Please check password'
@@ -185,7 +182,7 @@ function users_password_check ($password1, $password2) {
   if (empty($password1) || empty($password2)) {
     // return FALSE;
     return array(
-      'success' => FALSE,
+      'succes' => FALSE,
       'message' => 'Please enter a password'
     );
   }
@@ -193,7 +190,7 @@ function users_password_check ($password1, $password2) {
   elseif ($password1 != $password2) {
     // return FALSE;
     return array(
-      'success' => FALSE,
+      'succes' => FALSE,
       'message' => 'Passwords do not match'
     );
   }
@@ -201,14 +198,14 @@ function users_password_check ($password1, $password2) {
   elseif (strlen($password_tags) != strlen($password1)) {
     // return FALSE;
     return array(
-      'success' => FALSE,
+      'succes' => FALSE,
       'message' => 'Please enter a password without forbidden characters'
     );
   }
 
   // return TRUE;
   return array(
-    'success' => TRUE
+    'succes' => TRUE
   );
 }
 
@@ -247,7 +244,7 @@ function users_registration_check($user_data) {
   }
 
 // check if password is matching
-  if (!$users_password_check_result->success) {
+  if (!$users_password_check_result->succes) {
     return array(
       'succes' => FALSE,
       'message' => $users_password_check_result->message

@@ -10,5 +10,3 @@ function upload_xml(){
     <input type="file" name="Savegame_zip" id="Savegame_zip">
     <input type="submit" name="submit" value="Send file">
   </form>
-<?php
-}

@@ -1,12 +1,13 @@
 <!-- html5 Login abd and regitration form. -->
 <link rel="stylesheet" href="./includes/users/template/css/user.css" type="text/css">
   <div class="account-forms">
-<?php if (isset($_GET['password-reset'])) : ?>
-
-  <form action="index.php" method="get" name="account-recover">
+<?php if (isset($_GET['account-recovery'])) : ?>
+  <form action="" method="post" name="account-recover">
+    <input type="hidden" name="selector" value="<?php $_GET['selector'] ?>">
+    <input type="hidden" name="validator" value="<?php $_GET['validator'] ?>">
     <p>Password: <input type="password" placeholder="password" name="password1" value="<?php print htmlentities($password1); ?>"></p>
     <p>Confirmation password: <input type="password" placeholder="nogmaals password voor controle"  name="password2"></p>
-    <input type="submit" name="account-recover" value="Reset password">
+    <input type="submit" name="recover-password" value="Reset password">
   </form>
 
 <?php else : ?>
@@ -43,7 +44,7 @@
       <form action="" method="post" name="password-reset">
         <p>Enter email:</p>
         <input type="email" placeholder="Email" name="email">
-        <input type="submit" name="reset-password" value="Recover password">
+        <input type="submit" name="send-token" value="Recover password">
       </form>
     </section>
   </div>

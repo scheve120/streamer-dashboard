@@ -15,7 +15,7 @@ nav button {
   width: 500px;
   margin: auto;
   background-color: powderblue;
-  color: grey;
+  color: blue;
 }
 
 button.active {

@@ -1,12 +1,28 @@
 <?php
 
-/** User recovery.
- *
- * @File: This script whil handle the user registration function.
- * user recovery script.
+/**
+ * @file
+ * This script whil handle the user registration function.
  */
 
-function users_get_username_from_email ($email) {
+ /**
+  * Start the function for password recovery.
+  */
+function users_init_password_recovery($user_data) {
+  $users_reset_password_result = (object) users_get_username_from_email($user_data);
+  if ($users_reset_password_result->success) {
+    $recovery_email = array(
+      'username' => $users_reset_password_result->username,
+      'email' => $user_data,
+    );
+    users_generate_recovery_token($recovery_email);
+  }
+}
+
+/**
+ * Checking if the email exist in the database.
+ */
+function users_get_username_from_email($email) {
   global $pdo;
 
   $query_string = "SELECT user_name, user_email FROM user WHERE user_email=?";
@@ -26,19 +42,9 @@ function users_get_username_from_email ($email) {
   );
 }
 
-// Start the function for password recovery.
-function users_init_password_recovery($user_data) {
-  $users_reset_password_result = (object) users_get_username_from_email($user_data);
-  if ($users_reset_password_result->success) {
-    $recovery_email = array(
-      'username' => $users_reset_password_result->username,
-      'email' => $user_data,
-    );
-    users_generate_recovery_token($recovery_email);
-  }
-}
-
-/** Generates the has and user token key. */
+/**
+ * Generates the has and user token key.
+ */
 function users_generate_recovery_token($select_user_email) {
   // Defining the globals.
   global $pdo;
@@ -49,7 +55,8 @@ function users_generate_recovery_token($select_user_email) {
   $token = random_bytes(64);
 
   // Create the token verify link to send to the email adres.
-  $verify_url = $site_url . 'reset.php?' . http_build_query([
+  $verify_url = $site_url . '?' . http_build_query([
+    'account-recovery' => '',
     'selector' => $selector,
     'validator' => bin2hex($token),
   ]);
@@ -60,7 +67,7 @@ function users_generate_recovery_token($select_user_email) {
 
   $user_validation_query = array(
     'user_selector' => $selector,
-    'user_token' => $token,
+    'user_token' => hash('sha256', $token),
     'user_token_expire_time' => $expires->format('Y-m-d\TH:i:s'),
     'user_email' => $select_user_email['email'],
   );
@@ -77,10 +84,51 @@ function users_generate_recovery_token($select_user_email) {
       'username' => $select_user_email['username'],
       'email_text' => 'Hallo ' . $select_user_email['username'] . ' Please click on the link <a href=" ' . $verify_url . '">link </a> to recover you account',
     );
-    echo "recovery function failt 2";
     email_sender($send_recovery_email);
+    echo "Function is working thil here! (This function is under construction!!)";
   }
   else {
-    echo "recovery function failt 3";
+    echo "Function error (This function is under construction!!)";
   }
+}
+
+function init_recovery($selector, $validator) {
+  global $pdo;
+
+  $select_user_from_token = "SELECT * FROM user WHERE user_selector = ?";
+  $update_user_password = "UPDATE user SET user_password= :password, user_token=NULL, user_selector=NULL, user_token_expire_time=NOW(), user_token_time=NOW() WHERE user_selector=?";
+  $get_user_details = $pdo->prepare($select_user_from_token);
+  $get_user_details->execute([$selector]);
+  $start_token_check = $get_user_details->fetch();
+  // print_r($get_user_details['user_token']);
+  print_r($start_token_check);
+  var_dump(password_verify($validator, $start_token_check['user_token']));
+  echo "3 <br/>";
+  if (isset($_POST['recover-password'])) {
+    echo "23 </br>";
+    if ($start_token_check['user_selector'] === $selector) {
+      echo "2";
+      return array(
+        'recovery' => TRUE,
+        'username' => $start_token_check['user_name'],
+        'message' => "recovery token valid",
+      );
+      echo '1';
+    }
+    else {
+      return array(
+        'recovery' => FALSE,
+        'username' => 'No username found',
+        'message' => "recovery token not valid",
+      );
+    }
+  }
+  else {
+    return array(
+      'recovery' => '',
+      'username' => '',
+      'message' => '',
+    );
+  }
+  $user_update_password_sql = "UPDATE user SET user_password=:password, user_token=[NULL]";
 }
