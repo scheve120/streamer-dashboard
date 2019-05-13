@@ -10,15 +10,11 @@ if (isset($_POST["REGemail1"]) && isset($_POST["REGemail2"])) {
 if (isset($_POST["login-button"])) {
   $form_key = 'login';
   $name =  $_POST["user_name"];
-  $email1 = $_POST["email1"];
-  $email2 = $_POST["email2"];
-  $password =  $_POST["password1"];
+  $password =  $_POST["password"];
 
   $page_variables = array(
     'form_key' => $form_key,
     'name' => $name,
-    'email1' => $email1,
-    'email2' => $email2,
     'password' => $password
   );
 }

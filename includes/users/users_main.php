@@ -18,6 +18,7 @@ if (isset($_GET['account-recovery']) || isset($_POST['recover-password'])) {
   $get_user_data = TRUE;
   $init_recovery_result = (object) init_recovery($_GET['selector'], $_GET['validator']);
   if ($init_recovery_result->recovery) {
+    echo $init_recovery_result->message;
   }
   else {
     $init_recovery_result->message;

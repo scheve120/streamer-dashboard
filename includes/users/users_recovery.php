@@ -96,24 +96,25 @@ function init_recovery($selector, $validator) {
   global $pdo;
 
   $select_user_from_token = "SELECT * FROM user WHERE user_selector = ?";
-  $update_user_password = "UPDATE user SET user_password= :password, user_token=NULL, user_selector=NULL, user_token_expire_time=NOW(), user_token_time=NOW() WHERE user_selector=?";
+  $update_user_password = "UPDATE user SET user_password= :password, user_selector=NULL, user_token=NULL, user_token_expire_time=NOW(), user_token_time=NOW() WHERE user_selector=:selector";
   $get_user_details = $pdo->prepare($select_user_from_token);
   $get_user_details->execute([$selector]);
   $start_token_check = $get_user_details->fetch();
   // print_r($get_user_details['user_token']);
-  print_r($start_token_check);
-  var_dump(password_verify($validator, $start_token_check['user_token']));
-  echo "3 <br/>";
   if (isset($_POST['recover-password'])) {
-    echo "23 </br>";
-    if ($start_token_check['user_selector'] === $selector) {
-      echo "2";
+    $hash_password = password_hash($_POST["password1"], PASSWORD_DEFAULT);
+    if ($start_token_check['user_selector'] === $selector && $_POST["password1"] === $_POST["password2"]) {
+      $update_password = array(
+        'password' => $hash_password,
+        'selector' => $selector,
+      );
+      $account_recovery_update = $pdo->prepare($update_user_password);
+      $account_recovery_update->execute($update_password);
       return array(
         'recovery' => TRUE,
         'username' => $start_token_check['user_name'],
         'message' => "recovery token valid",
       );
-      echo '1';
     }
     else {
       return array(
@@ -122,13 +123,15 @@ function init_recovery($selector, $validator) {
         'message' => "recovery token not valid",
       );
     }
+    return array(
+      'username' => $start_token_check['user_name'],
+    );
   }
   else {
     return array(
       'recovery' => '',
       'username' => '',
-      'message' => '',
+      'message' => 'This usertoken is already uset or is expired. Please try again.',
     );
   }
-  $user_update_password_sql = "UPDATE user SET user_password=:password, user_token=[NULL]";
 }
