@@ -11,15 +11,13 @@ function send_email ($user_mailing) {
 
 function email_sender ($data) {
   global $site_domain;
-
+  
   // print_r($data['email']);
-
-  $name = $data['username'];
-  $username = htmlspecialchars($name);
+  $username = $data['username'];
+  $username = htmlspecialchars($username);
   $to = $data['email_to'];
   $subject = $data['email_subject'];
   $from = $data['from'].$site_domain;
-
 
   // Send content with html
   $headers  = 'MIME-Version: 1.0' . "\r\n";

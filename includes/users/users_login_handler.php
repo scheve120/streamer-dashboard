@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Login form script.
+ * Login handler script.
  */
 
 // If the user have prest the logout button.
@@ -15,7 +15,10 @@ if (isset($_POST["login-button"])) {
   users_login_naam_en_password();
 }
 
-// Login function
+/**
+ * @file
+ * Login function.
+ */
 function users_login_naam_en_password() {
   global $pdo;
   global $site_title_url;

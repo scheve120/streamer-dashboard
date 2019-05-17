@@ -72,6 +72,7 @@ function users_generate_recovery_token($select_user_email) {
     'user_email' => $select_user_email['email'],
   );
 
+  // Start updating the database and setting the Tokens.
   $user_recovery_sql_string = "UPDATE user SET user_selector=:user_selector, user_token=:user_token, user_token_expire_time=:user_token_expire_time WHERE user_email=:user_email";
   $stmt = $pdo->prepare($user_recovery_sql_string);
   $stmt->execute($user_validation_query);
@@ -84,30 +85,36 @@ function users_generate_recovery_token($select_user_email) {
       'username' => $select_user_email['username'],
       'email_text' => 'Hallo ' . $select_user_email['username'] . ' Please click on the link <a href=" ' . $verify_url . '">link </a> to recover you account',
     );
+    // Send the recovery link to the user.
     email_sender($send_recovery_email);
-    echo "Function is working thil here! (This function is under construction!!)";
   }
   else {
-    echo "Function error (This function is under construction!!)";
   }
 }
 
+/**
+ * Start the password recovery.
+ */
 function init_recovery($selector, $validator) {
   global $pdo;
 
+  // Creating the variables and database query variables.
   $select_user_from_token = "SELECT * FROM user WHERE user_selector = ?";
   $update_user_password = "UPDATE user SET user_password= :password, user_selector=NULL, user_token=NULL, user_token_expire_time=NOW(), user_token_time=NOW() WHERE user_selector=:selector";
   $get_user_details = $pdo->prepare($select_user_from_token);
   $get_user_details->execute([$selector]);
   $start_token_check = $get_user_details->fetch();
-  // print_r($get_user_details['user_token']);
+
+  // Check if the form reset password has ben set.
   if (isset($_POST['recover-password'])) {
     $hash_password = password_hash($_POST["password1"], PASSWORD_DEFAULT);
+    // If token is verify than update the database.
     if ($start_token_check['user_selector'] === $selector && $_POST["password1"] === $_POST["password2"]) {
       $update_password = array(
         'password' => $hash_password,
         'selector' => $selector,
       );
+      // Start the updating process and return answer arrays.
       $account_recovery_update = $pdo->prepare($update_user_password);
       $account_recovery_update->execute($update_password);
       return array(
