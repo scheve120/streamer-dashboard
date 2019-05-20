@@ -1,7 +1,7 @@
 <?php
 
 
-if ($form_key === "register") {
+if ($form_key === 'register') {
   $users_init_registration_process_result = (object) users_init_registration_process();
 
   if (!$users_init_registration_process_result->succes) {
@@ -12,28 +12,28 @@ if ($form_key === "register") {
 if (isset($_POST['send-token'])) {
   require_once './includes/users/users_recovery.php';
 
-  users_init_password_recovery($_POST["email"]);
+  users_init_password_recovery($_POST['email']);
 }
 
 function users_init_registration_process() {
   global $site_url;
   global $site_domain;
 
-  $username = $_POST["user_name"];
-  $email = $_POST["email1"];
+  $username = $_POST['username'];
+  $email = $_POST['email1'];
   // Variabele hernoemen naar $password_hashed?
-  $hash_password = password_hash($_POST["password1"], PASSWORD_DEFAULT);
+  $hash_password = password_hash($_POST['password1'], PASSWORD_DEFAULT);
   $user_data = array(
-    'username' => $_POST["user_name"],
-    'email1' => $_POST["email1"],
-    'email2' => $_POST["email2"],
-    'password1' => $_POST["password1"],
-    'password2' => $_POST["password2"],
+    'username' => $_POST['username'],
+    'email1' => $_POST['email1'],
+    'email2' => $_POST['email2'],
+    'password1' => $_POST['password1'],
+    'password2' => $_POST['password2'],
     'hash_pass' => $hash_password,
     'from' => 'no-reply@',
-    'email_subject' => 'Registration succesful',
-    'email_to' => $_POST["email1"],
-    'email_text' => 'Welcom ' . strip_tags($_POST["user_name"]) . ' to <a href="' . $site_url . '">' . $site_domain . '"</a>"',
+    'email_subject' => 'Registration succesful!',
+    'email_to' => $_POST['email1'],
+    'email_text' => 'Welcom ' . strip_tags($_POST['username']) . ' to <a href="' . $site_url . '">' . $site_domain . '"</a>"',
   );
 
   // Check if everything is correct.

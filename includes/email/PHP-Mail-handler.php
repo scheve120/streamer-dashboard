@@ -10,10 +10,12 @@
  * Old email function Meby setting it for smtp.
  */
 function send_email($user_mailing) {
+  global $site_domain;
+
   $to = $user_mailing['email'];
-  $subject = "Test of email werkt";
-  $from = "broworkspace.nl";
-  $text = "Gefeliciteerd" . $user_mailing['name'] . "je bent nu lid van <a href=Browowkrspace.nl>Browowkrspace</a>";
+  $subject = 'Test of email werkt';
+  $from = 'broworkspace.nl';
+  $text = 'Gefeliciteerd' . $user_mailing['name'] . 'je bent nu lid van <a href= http://' . $site_domain . '>Browowkrspace</a>';
   $text = wordwrap($text, 70);
 }
 

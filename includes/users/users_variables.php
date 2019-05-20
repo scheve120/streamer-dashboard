@@ -5,32 +5,32 @@
  * Setting registration variables.
  */
 
-if (isset($_POST["REGemail1"]) && isset($_POST["REGemail2"])) {
+if (isset($_POST['registration_email1']) && isset($_POST['registration_email2'])) {
 
-  email_check($_POST["REGemail1"], $email1, $_POST["REGemail2"]);
+  email_check($_POST['registration_email1'], $email1, $_POST['registration_email2']);
 }
 
 // Create login and registration variables.
-if (isset($_POST["login-button"])) {
+if (isset($_POST['login-button'])) {
   $form_key = 'login';
-  $name = $_POST["user_name"];
+  $username = $_POST["username"];
   $password = $_POST["password"];
 
   $page_variables = array(
     'form_key' => $form_key,
-    'name' => $name,
+    'username' => $username,
     'password' => $password,
   );
 }
 elseif (isset($_POST["register-button"])) {
   $form_key = 'register';
-  $name = $_POST["user_name"];
-  $email1 = $_POST["email1"];
-  $email2 = $_POST["email2"];
-  $password1 = $_POST["password1"];
+  $username = $_POST['username'];
+  $email1 = $_POST['email1'];
+  $email2 = $_POST['email2'];
+  $password1 = $_POST['password1'];
   $page_variables = array(
     'form_key' => $form_key,
-    'name' => $name,
+    'username' => $username,
     'email1' => $email1,
     'email2' => $email2,
     'password1' => $password1,

@@ -83,7 +83,7 @@ function users_generate_recovery_token($select_user_email) {
       'email_subject' => 'Account recovery',
       'from' => 'no-reply@',
       'username' => $select_user_email['username'],
-      'email_text' => 'Hallo ' . $select_user_email['username'] . ' Please click on the <a href=" ' . $verify_url . '">link </a> to recover you account',
+      'email_text' => 'Hallo ' . $select_user_email['username'] . ' Please click on the <a href=" ' . $verify_url . '">link</a> to recover you account',
     );
     // Send the recovery link to the user.
     email_sender($send_recovery_email);
@@ -107,9 +107,9 @@ function init_recovery($selector, $validator) {
 
   // Check if the form reset password has ben set.
   if (isset($_POST['recover-password'])) {
-    $hash_password = password_hash($_POST["password1"], PASSWORD_DEFAULT);
+    $hash_password = password_hash($_POST['password1'], PASSWORD_DEFAULT);
     // If token is verify than update the database.
-    if ($start_token_check['user_selector'] === $selector && $_POST["password1"] === $_POST["password2"]) {
+    if ($start_token_check['user_selector'] === $selector && $_POST['password1'] === $_POST['password2']) {
       $update_password = array(
         'password' => $hash_password,
         'selector' => $selector,
