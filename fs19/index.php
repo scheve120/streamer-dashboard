@@ -1,6 +1,6 @@
 <?php
   include 'uploadhandler.php';
-  $uploadobject = new uploader();
+  $uploadobject = new Uploader();
   $uploadobject->upload();
 
 ?>

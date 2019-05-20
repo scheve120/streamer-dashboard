@@ -83,7 +83,7 @@ function users_generate_recovery_token($select_user_email) {
       'email_subject' => 'Account recovery',
       'from' => 'no-reply@',
       'username' => $select_user_email['username'],
-      'email_text' => 'Hallo ' . $select_user_email['username'] . ' Please click on the link <a href=" ' . $verify_url . '">link </a> to recover you account',
+      'email_text' => 'Hallo ' . $select_user_email['username'] . ' Please click on the <a href=" ' . $verify_url . '">link </a> to recover you account',
     );
     // Send the recovery link to the user.
     email_sender($send_recovery_email);
@@ -120,14 +120,14 @@ function init_recovery($selector, $validator) {
       return array(
         'recovery' => TRUE,
         'username' => $start_token_check['user_name'],
-        'message' => "recovery token valid",
+        'message' => 'recovery token valid',
       );
     }
     else {
       return array(
         'recovery' => FALSE,
         'username' => 'No username found',
-        'message' => "recovery token not valid",
+        'message' => 'recovery token not valid',
       );
     }
     return array(

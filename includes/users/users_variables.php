@@ -38,6 +38,7 @@ elseif (isset($_POST["register-button"])) {
 }
 else {
   $form_key = FALSE;
+
   $page_variables = array(
     'form_key' => '',
     'name' => '',

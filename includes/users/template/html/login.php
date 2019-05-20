@@ -5,8 +5,8 @@
   <form action="" method="post" name="account-recover">
     <input type="hidden" name="selector" value="<?php $_GET['selector'] ?>">
     <input type="hidden" name="validator" value="<?php $_GET['validator'] ?>">
-    <p>Password: <input type="password" placeholder="password" name="password1" value="<?php print htmlentities($password1); ?>"></p>
-    <p>Confirmation password: <input type="password" placeholder="nogmaals password voor controle"  name="password2"></p>
+    <label><p>Password: </label><input type="password" placeholder="password" name="password1" value="<?php print htmlentities($password1); ?>"></p>
+    <label><p>Confirmation password: </label><input type="password" placeholder="nogmaals password voor controle"  name="password2"></p>
     <input type="submit" name="recover-password" value="Reset password">
   </form>
 
@@ -23,27 +23,26 @@
 
     <section class="login">
       <form action="" method="post"  name="Login">
-        <p>Username: <input type="text"  placeholder="User name"  name="user_name"></p>
-        <p>Password: <input type="password" placeholder="Password" name="password"></p>
+        <p><label>Username: </label><input type="text"  placeholder="User name"  name="user_name"></p>
+        <p><label>Password: </label><input type="password" placeholder="Password" name="password"></p>
         <input type="submit" name="login-button" value="Login">
       </form>
     </section>
 
     <section class="register">
       <form action="" method="post"  name="registreer">
-        <p>Username: <input type="text"  placeholder="User name?"  name="user_name" value="<?php print htmlentities($name); ?>"></p>
-        <p>Email: <input type="email" placeholder="Email" name="email1" value="<?php print htmlentities($email1); ?>"></p>
-        <p>Verification email: <input type="email" placeholder="email" name="email2" value="<?php print htmlentities($email2); ?>"></p>
-        <p>Password: <input type="password" placeholder="password" name="password1" value="<?php print htmlentities($password1); ?>"></p>
-        <p>Confirmation password: <input type="password" placeholder="nogmaals password voor controle"  name="password2"></p>
-        <input type="submit" name="register-button" value="Registrate">
+        <p><label>Username </label><input type="text"  placeholder="User name?"  name="user_name" value="<?php print htmlentities($name); ?>"></p>
+        <p><label>Email </label><input type="email" placeholder="Email" name="email1" value="<?php print htmlentities($email1); ?>"></p>
+        <p><label>Verification email </label><input type="email" placeholder="email" name="email2" value="<?php print htmlentities($email2); ?>"></p>
+        <p><label>Password </label><input type="password" placeholder="password" name="password1" value="<?php print htmlentities($password1); ?>"></p>
+        <p><label>Confirmation password </label><input type="password" placeholder="nogmaals password voor controle"  name="password2"></p>
+        <p><input type="submit" name="register-button" value="Registrate"></p>
       </form>
     </section>
 
     <section class="reset">
       <form action="" method="post" name="password-reset">
-        <p>Enter email:</p>
-        <input type="email" placeholder="Email" name="email">
+        <p><label>Enter email:</label><input type="email" placeholder="Email" name="email"></p>
         <input type="submit" name="send-token" value="Recover password">
       </form>
     </section>

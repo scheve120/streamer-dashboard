@@ -10,7 +10,7 @@ if ($form_key === "register") {
 }
 
 if (isset($_POST['send-token'])) {
-  require_once "./includes/users/users_recovery.php";
+  require_once './includes/users/users_recovery.php';
 
   users_init_password_recovery($_POST["email"]);
 }
@@ -58,7 +58,7 @@ function users_init_registration_process() {
  */
 function users_is_string_tainted($string) {
   $arrFrom = array("'", '"', "{", "}", ",");
-  $arrTo = array("Hacker 1", "Hacker 2", "Hacker 3", "Hacker 4", "Hacker 5");
+  $arrTo = array('Hacker 1', 'Hacker 2', 'Hacker 3', 'Hacker 4', 'Hacker 5');
 
   $string = str_replace($arrFrom, $arrTo, $string, $count);
   return $count > 0;
@@ -289,11 +289,11 @@ function users_register_to_database($send_data) {
     $pdo->prepare($sqlInsert)->execute( [$send_data['username'], $send_data['email1'], $send_data['hash_pass']]);
     return array(
       'succes' => TRUE,
-      'message' => "Your registration is succesful! please check your Email",
+      'message' => 'Your registration is succesful! please check your Email',
     );
   }
   catch (PDOException $e) {
-    $existingError = "Catching un wanted injections violation: Code 10020";
+    $existingError = 'Catching un wanted injections violation: Code 10020';
     if (strpos($e->getMessage(), $existingkey) !== FALSE) {
       // Take some action if there is a key constraint violation.
     }

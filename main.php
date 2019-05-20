@@ -4,8 +4,14 @@
  * @file
  * This file whil load the needing files.
  */
- require './conf/conf.php';
- require "./sql/mysql.php";
+
+ // If the user have prest the logout button.
+if (isset($_POST["logout"])) {
+  unset($_SESSION["user_online"]);
+}
+
+require './conf/conf.php';
+require "./sql/mysql.php";
 // Volgende files laden wanneer je niet bent ingelogd.
 if (isset($_GET['password-reset'])) {
   require_once './includes/users/users_main.php';

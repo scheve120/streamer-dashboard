@@ -5,11 +5,6 @@
  * Login handler script.
  */
 
-// If the user have prest the logout button.
-if (isset($_POST["logout"])) {
-  $_SESSION["user_online"] = FALSE;
-}
-
 // If form is set start the loging function.
 if (isset($_POST["login-button"])) {
   users_login_naam_en_password();
@@ -35,13 +30,13 @@ function users_login_naam_en_password() {
     $_SESSION["user_online"] = TRUE;
     // Sending back to previous URL.
     $url = $_SERVER['HTTP_REFERER'];
-    $_SESSION["UserStatus"] = "Your logged in";
+    $_SESSION["UserStatus"] = 'Your logged in';
     // Php redirect.
     return (TRUE);
   }
   // Returns false is there is no password or name matching.
   $_SESSION["user_online"] = FALSE;
-  $_SESSION["Sessiontest"] = "Please login";
+  $_SESSION["Sessiontest"] = 'Please login';
   // Php redirect.
   return (FALSE);
 }

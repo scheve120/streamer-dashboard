@@ -13,7 +13,7 @@ function send_email($user_mailing) {
   $to = $user_mailing['email'];
   $subject = "Test of email werkt";
   $from = "broworkspace.nl";
-  $text = "Gefeliciteerd" . $user_mailing['name'] . "je ben nu lid van <a href=Browowkrspace.nl>Browowkrspace</a>";
+  $text = "Gefeliciteerd" . $user_mailing['name'] . "je bent nu lid van <a href=Browowkrspace.nl>Browowkrspace</a>";
   $text = wordwrap($text, 70);
 }
 
