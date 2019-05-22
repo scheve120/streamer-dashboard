@@ -13,8 +13,8 @@ if (isset($_POST['registration_email1']) && isset($_POST['registration_email2'])
 // Create login and registration variables.
 if (isset($_POST['login-button'])) {
   $form_key = 'login';
-  $username = $_POST["username"];
-  $password = $_POST["password"];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 
   $page_variables = array(
     'form_key' => $form_key,
@@ -22,7 +22,7 @@ if (isset($_POST['login-button'])) {
     'password' => $password,
   );
 }
-elseif (isset($_POST["register-button"])) {
+elseif (isset($_POST['register-button'])) {
   $form_key = 'register';
   $username = $_POST['username'];
   $email1 = $_POST['email1'];

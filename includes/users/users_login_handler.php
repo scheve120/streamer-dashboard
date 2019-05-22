@@ -21,7 +21,7 @@ function users_login() {
   $username = $_POST['username'];
   $userPassword = $_POST['password'];
 
-  $select_user = "SELECT * FROM user WHERE user_name = ?";
+  $select_user = 'SELECT * FROM user WHERE user_name = ?';
   $user_data_prepare = $pdo->prepare($select_user);
   $user_data_prepare->execute([$username]);
   $users = $user_data_prepare->fetch();

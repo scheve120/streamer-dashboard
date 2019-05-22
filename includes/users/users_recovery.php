@@ -25,7 +25,7 @@ function users_init_password_recovery($user_data) {
 function users_get_username_from_email($email) {
   global $pdo;
 
-  $query_string = "SELECT user_name, user_email FROM user WHERE user_email=?";
+  $query_string = 'SELECT user_name, user_email FROM user WHERE user_email=?';
   $query = $pdo->prepare($query_string);
   $query->execute([$email]);
   $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -73,7 +73,7 @@ function users_generate_recovery_token($select_user_email) {
   );
 
   // Start updating the database and setting the Tokens.
-  $user_recovery_sql_string = "UPDATE user SET user_selector=:user_selector, user_token=:user_token, user_token_expire_time=:user_token_expire_time WHERE user_email=:user_email";
+  $user_recovery_sql_string = 'UPDATE user SET user_selector=:user_selector, user_token=:user_token, user_token_expire_time=:user_token_expire_time WHERE user_email=:user_email';
   $stmt = $pdo->prepare($user_recovery_sql_string);
   $stmt->execute($user_validation_query);
   if ($stmt->execute($user_validation_query) === TRUE) {
@@ -99,8 +99,8 @@ function init_recovery($selector, $validator) {
   global $pdo;
 
   // Creating the variables and database query variables.
-  $select_user_from_token = "SELECT * FROM user WHERE user_selector = ?";
-  $update_user_password = "UPDATE user SET user_password= :password, user_selector=NULL, user_token=NULL, user_token_expire_time=NOW(), user_token_time=NOW() WHERE user_selector=:selector";
+  $select_user_from_token = 'SELECT * FROM user WHERE user_selector = ?';
+  $update_user_password = 'UPDATE user SET user_password= :password, user_selector=NULL, user_token=NULL, user_token_expire_time=NOW(), user_token_time=NOW() WHERE user_selector=:selector';
   $get_user_details = $pdo->prepare($select_user_from_token);
   $get_user_details->execute([$selector]);
   $start_token_check = $get_user_details->fetch();

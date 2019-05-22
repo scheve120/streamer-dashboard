@@ -37,7 +37,7 @@ function email_sender($data) {
   $headers  = 'MIME-Version: 1.0' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
   $headers .= "From: $from test location from the headers";
-  $text = $data["email_text"];
+  $text = $data['email_text'];
 
   $text = wordwrap($text, 70);
 

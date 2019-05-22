@@ -6,5 +6,6 @@ if (file_exists(__DIR__ . '/conf.local.php')) {
 
 // Global site variables
 
-$site_domain = 'development.broworkspace.nl';
-$site_url = "http://$site_domain/";
+$site_name = 'development.broworkspace'
+$site_tld = '.nl';
+$site_url = "http://$site_name$site_tld/";

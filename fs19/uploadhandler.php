@@ -10,10 +10,10 @@ class Uploader
   {
     $filearray = array(
       'UploadDir' => 'tempupload/',
-      'file_name' => $_FILES["Savegame_zip"]["name"],
-      'file_type' => $_FILES["Savegame_zip"]["type"],
-      'file_size' => $_FILES["Savegame_zip"]["size"],
-      'file_source' => $_FILES["Savegame_zip"]["tmp_name"]);
+      'file_name' => $_FILES['savegame_zip']['name'],
+      'file_type' => $_FILES['savegame_zip']['type'],
+      'file_size' => $_FILES['savegame_zip']['size'],
+      'file_source' => $_FILES['savegame_zip']['tmp_name']);
       return $filearray;
 
     }
@@ -26,9 +26,9 @@ class Uploader
       $name = explode(".", $file_name); #Seperates the name from the file type
       $accepted_types = array('application/zip', 'application/x-zip-compressed', 'multipart/x-zip', 'application/x-compressed');
       // check if file is zip
-      if(isset($_POST["submit"])){
+      if(isset($_POST['submit'])){
         echo '</br>Test of if submit werkt';
-        if($_FILES["savegame_zip"]["name"]){
+        if($_FILES['savegame_zip']['name']){
           echo 'If there is file';
           foreach ($accepted_types as $type) {
             echo '</br> Test of foreach draait';

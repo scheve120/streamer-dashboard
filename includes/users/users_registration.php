@@ -109,7 +109,7 @@ function users_is_all_user_input_tainted($username, $pass1, $pass2) {
 function users_name_is_free($username) {
   global $pdo;
   // Creating the query selector.
-  $select_user = "SELECT * FROM user WHERE user_name=?";
+  $select_user = 'SELECT * FROM user WHERE user_name=?';
 
   // Setting Query string.
   $query = $pdo->prepare($select_user);
@@ -168,7 +168,7 @@ function users_email_check($email1, $email2) {
  */
 function users_email_is_free($email) {
   global $pdo;
-  $users_email = "SELECT user_email FROM user WHERE user_email=?";
+  $users_email = 'SELECT user_email FROM user WHERE user_email=?';
   $query = $pdo->prepare($users_email);
   $query->execute([$email]);
   $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -284,7 +284,7 @@ function users_registration_check($user_data) {
  */
 function users_register_to_database($send_data) {
   global $pdo;
-  $sqlInsert = "INSERT INTO user (user_name, user_email, user_password) VALUES (?, ?, ?)";
+  $sqlInsert = 'INSERT INTO user (user_name, user_email, user_password) VALUES (?, ?, ?)';
   try {
     $pdo->prepare($sqlInsert)->execute( [$send_data['username'], $send_data['email1'], $send_data['hash_pass']]);
     return array(
