@@ -3,26 +3,6 @@ require_once 'variables.php';
 include 'functions.php';
 // require_once "../sql/mysql.php";
 
-/*
-function databaseupdatekilllog(){
-  $connect = $GLOBALS['dbconnection'];
-  if($connect === FALSE){
-    die("Error ik kan niet table niet vinden" . mysqli_connect_error());
-    return;
-  } else {
-    echo "database update killlog functie werkt"; # check of de functie werkt
-  }
-  $databasekilltable = "SELECT * FROM scoreboard";
-  $result = mysqli_query($connect,$databasekilltable);
-  if(mysqli_num_rows($result) > 0){
-    echo "ze zijn er";
-  } else {
-    echo "database is leeg";
-  }
-
-}
-*/
-
 $page = $_SERVER['PHP_SELF'];
 $sec = "20";
 
@@ -66,16 +46,6 @@ if(mysqli_num_rows($GETPlayerkilltableGetRow) > 0){
     echo "</tr>";
   }
 
-/*
-function calculateRatio(){
-  if($kill_plus && $kill_minus > 0){
-    $ratiocalculation = $kill_plus / $kill_minus;
-    return $ratiocalculation;
-  } else {
-    return "0";
-  }
-}
-*/
  ?>
 <html>
 
