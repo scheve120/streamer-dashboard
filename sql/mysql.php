@@ -4,7 +4,7 @@
  * @file
  * Database connect variable.
  */
-
+global $databaseconnect;
 $databaseconnect = mysqli_connect($sql_credentials['server_name'], $sql_credentials['username'], $sql_credentials['password'], $sql_credentials['dbname']);
 $dsn = "mysql:host=" . $sql_credentials['server_name'] . ";dbname={$sql_credentials['dbname']};charset={$sql_credentials['charset']}";
 

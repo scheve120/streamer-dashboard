@@ -17,7 +17,7 @@ if (isset($_POST['send-token'])) {
 
 function users_init_registration_process() {
   global $site_url;
-  global $site_domain;
+  global $site_name;
 
   $username = $_POST['username'];
   $email = $_POST['email1'];
@@ -33,7 +33,7 @@ function users_init_registration_process() {
     'from' => 'no-reply@',
     'email_subject' => 'Registration succesful!',
     'email_to' => $_POST['email1'],
-    'email_text' => 'Welcom ' . strip_tags($_POST['username']) . ' to <a href="' . $site_url . '">' . $site_domain . '"</a>"',
+    'email_text' => 'Welcom ' . strip_tags($_POST['username']) . ' to <a href="' . $site_url . '">' . $site_name . '</a>',
   );
 
   // Check if everything is correct.

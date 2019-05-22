@@ -41,7 +41,7 @@ else {
 
   $page_variables = array(
     'form_key' => '',
-    'name' => '',
+    'username' => '',
     'email1' => '',
     'email2' => '',
     'password1' => '',

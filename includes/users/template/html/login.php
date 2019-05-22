@@ -31,7 +31,7 @@
 
     <section class="register">
       <form action="" method="post"  name="registreer">
-        <p><label>Username </label><input type="text"  placeholder="User name?"  name="username" value="<?php print htmlentities($name); ?>"></p>
+        <p><label>Username </label><input type="text"  placeholder="User name?"  name="username" value="<?php print htmlentities($username); ?>"></p>
         <p><label>Email </label><input type="email" placeholder="Email" name="email1" value="<?php print htmlentities($email1); ?>"></p>
         <p><label>Verification email </label><input type="email" placeholder="email" name="email2" value="<?php print htmlentities($email2); ?>"></p>
         <p><label>Password </label><input type="password" placeholder="password" name="password1" value="<?php print htmlentities($password1); ?>"></p>
