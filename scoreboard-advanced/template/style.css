@@ -1,0 +1,38 @@
+body {
+  background-color: grey;
+}
+
+div.isntallation-body {
+  margin: auto;
+  margin-top: 5px;
+  background-color: #93D5CA;
+  width: 50%;
+  height: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+div.install-header {
+  margin: auto;
+  margin-top: 10px;
+  background-color: #D6FF9B;
+  width: auto;
+  border: 3px solid #E8AF2B;
+  text-align: center;
+}
+
+nav a {
+  border-style: outset;
+  float: center;
+  display: inline-block;
+}
+
+div.content-body {
+  margin: inherit;
+  padding-top: 10px;
+  margin-top: 10px;
+  background-color: #D6FF9B;
+  width: auto;
+  border: 3px solid #E8AF2B;
+  padding: 10px;
+}
