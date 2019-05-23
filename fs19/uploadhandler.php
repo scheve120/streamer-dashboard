@@ -69,7 +69,7 @@ class Uploader {
    * Starts upload process.
    */
   public function upload() {
-    $move_uploaded = $this->set_file_form_variables();
+    $move_uploaded = $this->setfileformvariables();
     echo 'Last part before moving file';
     if ($this->form_files_manager()) {
       move_uploaded_file($move_uploaded['file_source'], $move_uploaded['uploadDir'] . $move_uploaded['file_name']);
