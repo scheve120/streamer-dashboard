@@ -1,0 +1,50 @@
+<html>
+<head>
+    <link style="stylesheet" href="style.css" type="text/stylesheet">
+</head>
+
+<body>
+    <div class="calculator-windows">
+        <form id="form1">
+            <input type="text" id="calculator" name="calculator-value" placeholder="calculator-value">
+            <input type="submit" name="calculat">
+        </form>
+    </div>
+    <div class="row1">
+        <nav>
+            <button class='calculator-button' www-onclick='calculator(this.value);'>1</button>
+            <button class='calculator-button' value="2">2</button>
+            <button class='calculator-button' value="3">3</button>
+            <button class='calculator-button' value="+">+</button>
+        </nav>
+    </div>
+    <div class="row2">
+        <nav>
+            <button type="button" value="4" name="4">4</button>
+            <input type="button" value="5" name="5">
+            <input type="button" value="6" name="6">
+            <input type="button" value="-" name="-">
+        </nav>
+    </div>
+    <div class="row3">
+        <nav>
+            <input type="button" value="7" name="7">
+            <input type="button" value="8" name="8">
+            <input type="button" value="9" name="9">
+            <input type="button" value="/" name="/">
+        </nav>
+    </div>
+    <script type="text/javascript">
+        function calculator(val) {
+            var calculatation = document.getElementById('calculator-button');
+            calculatation.value = calculatation.value? parseInt(calculatation.value) + parseInt(val) : parseInt(val);
+
+            $('.calculator-button')
+            // bind click event to all buttons
+            // event callback function checks a button's value
+        }
+    </script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/jq.js"></script>
+</body>
+</html>
