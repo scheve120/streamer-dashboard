@@ -9,40 +9,46 @@
  * Create database tables and permission roles.
  */
 class DatabaseInstallation {
+
   // Setting database variables.
   function __construct() {
-
 
     $database_create_table = "CREATE TABLE scoreboard_adv (
       scorebaord_ID INT(100) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       board_name VARCHAR(50) NOT NULL,
-      row_naems VARCHAR(50) NOT NULL,
+      row_name VARCHAR(50) NOT NULL,
     )";
   }
 
   public function input_form_handler() {
-    global $pdo;
     // Starting Database test function. If not fount than create the tables.
     if (isset($_POST['test-db'])) {
-      $this->check_if_tables_exist($pdo);
+      $this->check_if_tables_exist();
+      echo "test is there is a table";
     }
 
     if (isset($_POST['test-create'])) {
-      $this->create_database_tables($pdo);
+      $this->create_database_tables();`
+      echo "creating table";
     }
   }
+
   /**
    * @file
    * Check if needed tables exist.
    */
-  public function check_if_tables_exist($pdo) {
-    $database_select_table = 'SELECT * FROM scoreboard_adv WHERE board_name= ?';
-    $start_database_test = $pdo->prepare($database_select_table);
-    if ($start_database_test->execute('test-board')) {
-      echo "Database exist";
+  public function check_if_tables_exist() {
+    global $pdo;
+
+    $database_select_table = "SHOW TABLES LIKE 'user'";
+    $query = $pdo->prepare($database_select_table);
+    $query->execute();
+    $check_table_exist = $query->fetch(PDO::FETCH_ASSOC);
+    if ($check_table_exist) {
+      ;
     }
     else {
-      echo "Database not exist";
+      return FALSE;
     }
   }
 
@@ -50,7 +56,7 @@ class DatabaseInstallation {
    * @file
    * If there no need tables than create tables.
    */
-  public function create_database_tables($pdo) {
+  public function create_database_tables() {
     echo "test function create_database_tables";
   }
 

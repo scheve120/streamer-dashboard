@@ -4,14 +4,18 @@
   <div class="install-header" id="installation-header">
     <div class="navigation">
       <nav class="installation-navigation">
-        <a href="?&create?=tables">Check tables </a>
+      <?php if (isset($_GET['create_board'])) :?>
         <a href="?&create?=create-newtable">create board </a>
+      <?php else : ?>
+        <a href="?&create?=tables">Check tables </a>
+      <?php endif; ?>
       </nav>
     </div>
   </div>
   <div class="content-body">
     <div class="test-database">
       <form action="" method="post" name="test-database">
+        <input type="text" name="board-name" placeholder="Name for the board">
         <input type="submit" name="test-db" value="test-database">
       </form>
       <br/>
