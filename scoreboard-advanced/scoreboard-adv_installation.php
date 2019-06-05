@@ -9,25 +9,27 @@
  * Create database tables and permission roles.
  */
 class DatabaseInstallation {
+  private $dbCreateTableQuery = 'CREATE TABLE `scoreboard_adv` (
+      `board_ID` int(200) NOT NULL,
+      `board_name` varchar(50) NOT NULL,
+      `board_data` varchar(250) NOT NULL,
+      `board_theme` varchar(250) NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci';
 
   // Setting database variables.
   function __construct() {
 
-    $DatabaseCreateTable = "CREATE TABLE scoreboard_adv (
-      scorebaord_ID INT(100) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-      board_name VARCHAR(50) NOT NULL,
-      row_name VARCHAR(50) NOT NULL,
-    )";
   }
 
   public function InputFormHandler() {
+
     // Starting Database test function. If not fount than create the tables.
     if (isset($_POST['test-db'])) {
       $this->CheckIfTablesExist();
-      echo "test is there is a table";
+      echo "test is there a table";
     }
 
-    if (isset($_POST['test-create']) || !CheckIfTablesExist()) {
+    if (isset($_POST['test-create'])) {
       $this->CreateDatabaseTables();
       echo "creating table";
     }
@@ -40,17 +42,18 @@ class DatabaseInstallation {
   public function CheckIfTablesExist() {
     global $pdo;
 
-    $database_select_table = "SHOW TABLES LIKE 'user234'";
+    $database_select_table = "SHOW TABLES LIKE 'scoreboard_adv'";
     $query = $pdo->prepare($database_select_table);
     $query->execute();
     $CheckTableExist = $query->fetch(PDO::FETCH_ASSOC);
     if ($CheckTableExist) {
       echo 'Table exist: :NAME:';
+      return;
     }
     else {
-      echo 'Table is not existing :CREATE: <br/>';
+      echo 'Table is not existing <br/>';
       $this->CreateDatabaseTables();
-      return FALSE;
+      return;
     }
   }
 
@@ -59,7 +62,16 @@ class DatabaseInstallation {
    * If there no need tables than create tables.
    */
   public function CreateDatabaseTables() {
-    echo "<br/> Test if it whil go to the next function if the tables dos not exist";
+    global $pdo;
+  
+    // $InstallTable = $pdo->prepare($this->dbCreateTableQuery);
+    $result = $pdo->exec($this->dbCreateTableQuery);
+    try {
+      $result;
+    } catch (PDOException $e){
+      echo $e;
+      throw $e;
+    }
   }
 
 }

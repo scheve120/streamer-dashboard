@@ -1,13 +1,14 @@
 <!-- html5 Login abd and regitration form. -->
+
 <link rel="stylesheet" href="template/style.css" type="text/css">
 <div class="isntallation-body">
   <div class="install-header" id="installation-header">
     <div class="navigation">
       <nav class="installation-navigation">
-      <?php if (isset($_GET['create_board'])) :?>
-        <a href="?&create?=create-newtable">create board </a>
+      <?php if (isset($_GET['create']) && $_GET['create'] == 'tables') :?>
+        <a href="?create=create-newtable">create board </a>
       <?php else : ?>
-        <a href="?&create?=tables">Check tables </a>
+        <a href="?create=tables">Check tables </a>
       <?php endif; ?>
       </nav>
     </div>
@@ -34,4 +35,8 @@
       Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque sed ex quam. Praesent mattis et dui vel aliquam. Morbi id sem lectus. In eget nibh erat.
     </div>
   </div>
+</div>
+
+<div class="DB-admin-tables">
+
 </div>
