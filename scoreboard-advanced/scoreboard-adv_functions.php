@@ -29,13 +29,14 @@ class BuildUpScoreboard {
     print_r($fetchScoreboards->fetch(PDO::FETCH_ASSOC));
     if ($fetchScoreboards->fetch(PDO::FETCH_ASSOC) > 0) {
       // echo 'there is board info';
+      // @TODO: Fix setting array for the database data
       foreach ($fetchScoreboards as $scoreboards) {
         return array(
           'name_ID' => $scoreboards["board_ID"],
           'name' => $scoreboards['board_name'],
           'tables' => $scoreboards['board_data'],
           'style' => $scoreboards['board_theme'],
-          'test' => 'test deze object array2',
+          'test' => 'test deze object array 2',
         );
       }
     }

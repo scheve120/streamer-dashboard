@@ -36,7 +36,7 @@
     </div>
   </div>
 </div>
-
+<!-- @TODO: Here starts the function if there is data in the scorboard database than show else nothing -->
 <div class="DB-admin-tables">
-
+  <!-- @TODO: here comes the database content -->
 </div>
