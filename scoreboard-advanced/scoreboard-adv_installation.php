@@ -9,6 +9,7 @@
  * Create database tables and permission roles.
  */
 class DatabaseInstallation {
+
   private $dbCreateTableQuery = 'CREATE TABLE `scoreboard_adv` (
       `board_ID` int(200) NOT NULL,
       `board_name` varchar(50) NOT NULL,
@@ -22,16 +23,19 @@ class DatabaseInstallation {
   }
 
   public function InputFormHandler() {
-
     // Starting Database test function. If not fount than create the tables.
     if (isset($_POST['test-db'])) {
       $this->CheckIfTablesExist();
-      echo "test is there a table";
+      return array(
+        'table-exist' => TRUE,
+      );
     }
 
     if (isset($_POST['test-create'])) {
       $this->CreateDatabaseTables();
-      echo "creating table";
+      return array(
+        'table-exist' => FALSE,
+      );
     }
   }
 
@@ -47,13 +51,15 @@ class DatabaseInstallation {
     $query->execute();
     $CheckTableExist = $query->fetch(PDO::FETCH_ASSOC);
     if ($CheckTableExist) {
-      echo 'Table exist: :NAME:';
-      return;
+      return array(
+        'table-exist' => TRUE,
+      );
     }
     else {
-      echo 'Table is not existing <br/>';
       $this->CreateDatabaseTables();
-      return;
+      return array(
+        'table-exist' => FALSE,
+      );
     }
   }
 
@@ -63,7 +69,7 @@ class DatabaseInstallation {
    */
   public function CreateDatabaseTables() {
     global $pdo;
-  
+
     // $InstallTable = $pdo->prepare($this->dbCreateTableQuery);
     $result = $pdo->exec($this->dbCreateTableQuery);
     try {

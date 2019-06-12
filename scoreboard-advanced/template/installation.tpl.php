@@ -15,20 +15,25 @@
   </div>
   <div class="content-body">
     <div class="test-database">
+      <h2> Test database </h2>
       <form action="" method="post" name="test-database">
         <input type="text" name="board-name" placeholder="Name for the board">
         <input type="submit" name="test-db" value="test-database">
       </form>
       <br/>
+      <h2> Test if scoreboard exist</h2>
       <form action="" method="post" name="test-database">
         <input type="submit" name="test-create" value="test-database">
       </form>
     </div>
     <div class="control-panel">
+      <h2> Create board </h2>
       <form action="" method="post" name="create-board">
         <input type="text" name="board-name" placeholder="Name for the board">
         <input type="text" name="row-numbers" placeholder="Fill in houw many rows">
+        <input type="submit" name="create-board" value="create-board">
       </form>
+      <br/>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac ornare est, at accumsan sem. Donec in ultricies orci, a finibus diam. Morbi elementum bibendum vehicula.
       Maecenas ultricies turpis ligula, non hendrerit ipsum fermentum a. Donec quis lorem diam. Donec aliquam gravida diam a cursus. Vestibulum laoreet neque nisl, et aliquam orci scelerisque quis.
       Nulla ultrices pretium consequat. Aliquam eget lorem id diam egestas aliquet nec ut diam. Duis venenatis, magna vitae convallis faucibus, sem tellus pharetra enim, pharetra accumsan tortor leo vel nisi.

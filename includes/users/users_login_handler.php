@@ -31,6 +31,11 @@ function users_login() {
     // Sending back to previous URL.
     $url = $_SERVER['HTTP_REFERER'];
     $_SESSION['user_status'] = 'Your logged in';
+    $_SESSION['user'] = array (
+      'logged_on' => TRUE,
+      'id' => $users['user_ID'],
+    );
+
     // Php redirect.
     return (TRUE);
   }

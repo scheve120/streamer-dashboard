@@ -8,7 +8,7 @@
  * @file
  * Create scoreboard.
  */
-class BuildUpScoreboard {
+class ScoreBoardManager {
   public $boardData = array(
     'ID' => '',
     'name' => '',
@@ -18,27 +18,51 @@ class BuildUpScoreboard {
   );
 
   function __construct() {
-    
+
   }
 
-  public function getBoards() {
+  public function getBoard() {
     global $pdo;
     $selectQuery = 'SELECT * FROM scoreboard_adv';
     $fetchScoreboards = $pdo->prepare($selectQuery);
     $fetchScoreboards->execute();
-    print_r($fetchScoreboards->fetch(PDO::FETCH_ASSOC));
     if ($fetchScoreboards->fetch(PDO::FETCH_ASSOC) > 0) {
       // echo 'there is board info';
       // @TODO: Fix setting array for the database data
       foreach ($fetchScoreboards as $scoreboards) {
         return array(
-          'name_ID' => $scoreboards["board_ID"],
+          'board_id' => $scoreboards["board_ID"],
           'name' => $scoreboards['board_name'],
-          'tables' => $scoreboards['board_data'],
-          'style' => $scoreboards['board_theme'],
+          'board_data' => $scoreboards['board_data'],
+          'board_theme' => $scoreboards['board_theme'],
           'test' => 'test deze object array 2',
         );
       }
+    }
+  }
+
+  function createBoard() {
+    global $pdo;
+
+
+  }
+
+  function matchUserToBoard() {
+
+    global $pdo;
+    $board = $this->getBoard();
+    $board_id = $board['board_id'];
+    $userID = $_SESSION['user']['user_id'];
+    $linkTables = "SELECT board_name, user_name, user.user_id FROM `scoreboard_adv` INNER JOIN user ON scoreboard_adv.user_id = user.user_id WHERE user.user_id = $userID";
+    $selectBoard = "SELECT * FROM `scoreboard_adv` WHERE user_id = 2";
+
+// SELECT * FROM `scoreboard_adv` WHERE user_id = 2
+// SELECT board_name, user_name, user.user_id FROM `scoreboard_adv` INNER JOIN user ON scoreboard_adv.user_id = user.user_id WHERE user.user_id = 2
+
+    $query = $pdo->prepare($selectBoard);
+    
+    if ($query->execute()) {
+      echo "test";
     }
   }
 

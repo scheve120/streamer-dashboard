@@ -20,11 +20,17 @@ if (isset($_GET['password-reset'])) {
 elseif (empty($_SESSION['user_online'])) {
   require_once './includes/users/users_main.php';
   $page_content = load_template('./includes/users/template/html/login.php', $page_variables);
-
 }
 else {
+  include './scoreboard-advanced/scoreboard-adv_main.php';
+  if (empty($test_databse->CheckIfTablesExist()['table-exist']) && $test_databse->CheckIfTablesExist()['table-exist']) {
+    $page_content = load_template('./scoreboard-advanced/template/board.tpl.php', array());
+  }
+  else {
+    $page_content = load_template('./scoreboard-advanced/template/installation.tpl.php', array());
+  }
   // Laad deze bestanden wanneer je wel ben ingelogd.
-  $page_content = load_template('./scoreboard/editboard.php', $page_variables);
+  // $page_content = load_template('./scoreboard/editboard.php', '');
 }
 
 require './themes/templates/html.php';
@@ -35,7 +41,10 @@ echo date(DATE_RFC2822);
  * Volgende file WEL laden wanneer je bent ingelogd.
  */
 function load_template($template_path, $variables = array()) {
-  extract($variables);
+
+  if (!empty($variables)) {
+    extract($variables);
+  }
 
   ob_start();
 
